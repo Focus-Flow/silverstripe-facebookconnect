@@ -57,7 +57,7 @@ class FacebookConnectAuthCallback extends Controller
                 );
 
                 $user = (new FacebookRequest(
-                    $session, 'GET', '/me', $fields
+                    $session, 'GET', '/me', array('fields' => implode(',', $fields))
                 ))->execute()->getGraphObject(GraphUser::className());
 
                 if (!$member = Member::currentUser()) {
